@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tutor Dashboard – Little Tutor</title>
+<link rel="stylesheet" href="css/tutor.css">
+</head>
+<body data-page="tutor">
+
+<div class="t-toast" id="toast"></div>
+
+<header class="t-header">
+  <div class="t-wrap t-bar">
+    <div class="t-logo">Little Tutor <span>Tutor Dashboard</span></div>
+    <div class="viewswitch" id="vswitch" hidden>
+      <a href="index.html" data-vs="learner">Learner View</a>
+      <a href="tutor.html" data-vs="tutor">Tutor View</a>
+    </div>
+    <div class="t-user">
+      <div class="t-avatar" id="avatar">L</div>
+      <button class="t-link" id="logout">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main class="t-wrap">
+
+  <section class="t-banner">
+    <h1 id="tBanner">Grade 10A · Learners · Today</h1>
+    <p id="tHello"></p>
+  </section>
+
+  <div class="t-grid">
+
+    <!-- Attendance -->
+    <section class="t-card">
+      <h2>Attendance Today</h2>
+      <div class="t-stats">
+        <div class="t-stat good"><b id="aCame">0</b><span>Came</span></div>
+        <div class="t-stat bad"><b id="aAbs">0</b><span>Absent</span></div>
+      </div>
+      <h3>Absent learners <small>(click a name to mark present)</small></h3>
+      <div class="t-chips" id="aList"></div>
+      <details class="t-details">
+        <summary>Mark attendance for the whole class</summary>
+        <div class="t-chips" id="aAll"></div>
+      </details>
+    </section>
+
+    <!-- Homework tracker -->
+    <section class="t-card">
+      <h2>Homework Tracker</h2>
+      <select class="t-input" id="hSel" aria-label="Choose homework"></select>
+      <div class="t-stats">
+        <div class="t-stat good"><b id="hDid">0</b><span>Did homework</span></div>
+        <div class="t-stat bad"><b id="hNot">0</b><span>Didn’t do</span></div>
+      </div>
+      <h3>Not done yet</h3>
+      <div class="t-chips" id="hList"></div>
+      <button class="t-btn" id="hRemind">Send Reminder</button>
+      <p class="t-note" id="hStatus"></p>
+    </section>
+
+    <!-- Struggling -->
+    <section class="t-card">
+      <h2>Who Is Struggling</h2>
+      <p class="t-lead" id="sHead"></p>
+      <div class="t-chips" id="sList"></div>
+      <button class="t-btn" id="sExtra">Give Extra Lesson</button>
+      <p class="t-note" id="sStatus"></p>
+    </section>
+
+    <!-- Doing well -->
+    <section class="t-card">
+      <h2>Who Is Doing Well</h2>
+      <p class="t-note">Top 3 learners this week, by stars earned.</p>
+      <ol class="t-top" id="topList"></ol>
+    </section>
+
+    <!-- Message -->
+    <section class="t-card">
+      <h2>Send Message To All</h2>
+      <textarea class="t-input" id="mText" rows="3" maxlength="300" placeholder="Type a message for the whole class"></textarea>
+      <button class="t-btn" id="mSend">Send to all learners</button>
+      <p class="t-note" id="mStatus"></p>
+      <div id="mSent"></div>
+    </section>
+
+    <!-- Add homework -->
+    <section class="t-card">
+      <h2>Add Homework</h2>
+      <input class="t-input" id="nSubject" list="subjectList" placeholder="Subject (e.g. Mathematics)" maxlength="40">
+      <datalist id="subjectList"></datalist>
+      <input class="t-input" id="nTask" placeholder="Task (e.g. Exercise 4.2, questions 1 to 5)" maxlength="120">
+      <input class="t-input" id="nDue" type="date">
+      <button class="t-btn" id="nAdd">Add homework</button>
+      <p class="t-note" id="nStatus"></p>
+      <h3>Assigned homework</h3>
+      <div id="nList"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="t-wrap t-foot">Little Tutor · Tutor Dashboard · Learners see new homework instantly</footer>
+
+<script src="js/data.js"></script>
+<script src="js/content/grade8.js"></script>
+<script src="js/content/grade9.js"></script>
+<script src="js/content/grade10.js"></script>
+<script src="js/content/grade11.js"></script>
+<script src="js/content/grade12.js"></script>
+<script src="js/core.js"></script>
+<script src="js/tutor.js"></script>
+</body>
+</html>

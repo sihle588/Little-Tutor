@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Learn – Little Tutor</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="learn">
+
+<div class="toast" id="toast"></div>
+
+<header class="site-header">
+  <div class="wrap topbar">
+    <div class="logo">Little Tutor</div>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="learn.html" data-page="learn">Learn</a>
+      <a href="quiz.html" data-page="quiz">Quiz</a>
+      <a href="rewards.html" data-page="rewards">Rewards</a>
+    </nav>
+    <div class="viewswitch" id="vswitch" hidden>
+      <a href="index.html" data-vs="learner">Learner View</a>
+      <a href="tutor.html" data-vs="tutor">Tutor View</a>
+    </div>
+    <div class="user">
+      <div class="pill streak">Streak <span id="streakN">0</span></div>
+      <div class="pill stars">Stars <span id="starCount">0</span></div>
+      <div class="avatar" id="avatar">C</div>
+      <button class="link" id="logout">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2 class="vt">What do you want to learn?</h2>
+  <input class="inp" id="search" placeholder="Search a subject, e.g. Maths" autocomplete="off">
+  <p class="note">Open a subject to see its homework, take its quiz or get tutored.</p>
+  <div class="grid" id="subs"></div>
+</main>
+
+<footer class="wrap foot">Little Tutor · Grade 8 CAPS learner support</footer>
+
+<script src="js/data.js"></script>
+<script src="js/content/grade8.js"></script>
+<script src="js/content/grade9.js"></script>
+<script src="js/content/grade10.js"></script>
+<script src="js/content/grade11.js"></script>
+<script src="js/content/grade12.js"></script>
+<script src="js/core.js"></script>
+<script src="js/learn.js"></script>
+</body>
+</html>

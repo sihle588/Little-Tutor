@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Log in – Little Tutor</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-page">
+
+<div class="auth-card">
+  <h1>Little Tutor</h1>
+  <p>Grade 8 to 12 learning. Log in to see your own work. Your progress is private to you.</p>
+  <div class="atabs"><button class="tab on" id="aLogin">Log in</button><button class="tab" id="aReg">Register</button></div>
+  <input id="aName" placeholder="Your first name" maxlength="20" autocomplete="given-name" style="display:none">
+  <select id="aGrade" style="display:none">
+    <option value="">Choose your grade</option>
+    <option value="8">Grade 8</option><option value="9">Grade 9</option><option value="10">Grade 10</option>
+    <option value="11">Grade 11</option><option value="12">Grade 12</option>
+  </select>
+  <input id="aUser" placeholder="Email address" maxlength="60" autocomplete="username" inputmode="email">
+  <input id="aPass" type="password" placeholder="Password (6+ characters)" autocomplete="current-password">
+  <p><a class="link" href="forgot-password.html">Forgot password?</a></p>
+  <div class="err" id="aErr"></div>
+  <button class="go" id="aGo">Log in</button>
+  <div class="demo-box" id="demoBox">
+    <b>Demo logins</b>
+    <div><button class="link" id="dLearner">Use learner login</button> sihle.learner@gmail.com · learner123</div>
+    <div><button class="link" id="dTutor">Use tutor login</button> likuwe.tutor@gmail.com · tutor123</div>
+  </div>
+  <p>Using a shared device? Always log out when you are done.</p>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/content/grade8.js"></script>
+<script src="js/content/grade9.js"></script>
+<script src="js/content/grade10.js"></script>
+<script src="js/content/grade11.js"></script>
+<script src="js/content/grade12.js"></script>
+<script src="js/core.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

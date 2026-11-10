@@ -1,0 +1,28 @@
+/* Grade 8 subject content (unchanged from the original build) */
+CONTENT[8]=[
+{id:'maths',n:'Mathematics',s:'Maths',topic:'Fractions',k:'math maths algebra numbers',
+ hw:[{id:'m1',t:'Algebra Homework',d:'Exercise 4.2 · Due today',today:1,q:'Solve: 2x + 3 = 11. What is x?',o:['x = 3','x = 4','x = 7'],a:1},
+     {id:'m2',t:'Fractions Worksheet',d:'Page 38',q:'What is 2/3 + 1/6?',o:['3/9','5/6','2/9'],a:1}],
+ tut:{e:'A fraction shows parts of a whole. To add fractions, first make the bottom numbers (denominators) the same. Example: 1/2 + 1/4 = 2/4 + 1/4 = 3/4.',q:'1/3 + 1/6 = ?',o:['2/9','1/2','3/9'],a:1},
+ quiz:[['1/2 + 1/4 = ?',['2/6','3/4','1/6'],1,'1/2 is 2/4, so 2/4 + 1/4 = 3/4.'],['Simplify 6/8',['2/3','3/4','6/4'],1,'Divide the top and bottom by 2: 6/8 = 3/4.'],['Which fraction is the largest?',['1/2','2/3','3/4'],2,'Over 12: 6/12, 8/12 and 9/12. So 3/4 is largest.'],['What is 3/5 of 20?',['8','12','15'],1,'20 ÷ 5 = 4, then 4 × 3 = 12.'],['1 − 1/3 = ?',['1/3','2/3','3/3'],1,'1 is 3/3, so 3/3 − 1/3 = 2/3.']]},
+{id:'nat',n:'Natural Sciences',s:'Natural Sciences',topic:'Matter and Materials',k:'science sciences nat chemistry matter',
+ hw:[{id:'n1',t:'Read Chapter 4',d:'Matter and materials · Due today',today:1,q:'Which one is a physical change?',o:['Wood burning','Ice melting','Iron rusting'],a:1}],
+ tut:{e:'Matter is anything that has mass and takes up space. It is a solid, liquid or gas. In a physical change, like ice melting, no new substance is made.',q:'Which state of matter has a fixed shape?',o:['Gas','Liquid','Solid'],a:2},
+ quiz:[['Boiling water to steam is a change from…',['solid to liquid','liquid to gas','gas to solid'],1,'Boiling turns liquid water into a gas.'],['Which is a mixture?',['Pure gold','Oxygen','Salt water'],2,'Salt water is salt and water mixed together.'],['Particles are closest together in a…',['gas','liquid','solid'],2,'In a solid the particles are packed tightly.']]},
+{id:'eng',n:'English Home Language',s:'English',topic:'Comprehension',k:'english language reading writing',
+ hw:[{id:'e1',t:'Comprehension',d:'Read the passage and answer · Due today',today:1,q:'The main idea of a passage is…',o:['only the first sentence','the most important point the writer makes','the longest word'],a:1}],
+ tut:{e:'For a comprehension, read the passage once for the main idea, then reread to find answers. Always look for evidence in the text.',q:'Where do you find the answer to a comprehension question?',o:['By guessing','In the text of the passage','In the title font'],a:1},
+ quiz:[['A synonym of “enormous” is…',['tiny','huge','quiet'],1,'Enormous and huge both mean very big.'],['Which sentence is correct?',['She go to school.','She going school.','She goes to school.'],2,'With “she” we use “goes”.'],['A noun names…',['an action','a person, place or thing','only a feeling'],1,'Nouns name people, places and things.']]},
+{id:'soc',n:'Social Sciences',s:'Social Sciences',topic:'Maps and Mapwork',k:'social geography history maps',
+ hw:[{id:'g1',t:'Map Work',d:'Latitude and longitude',q:'Lines of latitude run…',o:['North to south','Diagonally','East to west'],a:2}],
+ tut:{e:'Lines of latitude run east to west and measure distance north or south of the Equator. Lines of longitude run north to south.',q:'The Equator is at…',o:['90° latitude','0° latitude','0° longitude'],a:1},
+ quiz:[['Which line is 0° longitude?',['Equator','Prime Meridian','Tropic of Cancer'],1,'The Prime Meridian is 0° longitude.'],['South Africa is on which continent?',['Africa','Asia','Europe'],0,'South Africa is in Africa.'],['Lines of longitude run…',['east to west','diagonally','north to south'],2,'Longitude lines run from pole to pole.']]},
+{id:'tech',n:'Technology',s:'Technology',topic:'Structures',k:'technology design structures',
+ hw:[{id:'t1',t:'Design Brief',d:'Simple structure',q:'Why are triangles used in structures?',o:['They look nice','They are lighter than paper','They resist bending'],a:2}],
+ tut:{e:'In Technology we follow the design process: investigate, design, make, evaluate, communicate. Triangles are strong shapes used in structures.',q:'Which step comes first in the design process?',o:['Evaluate','Investigate','Make'],a:1},
+ quiz:[['In the Evaluate step we…',['buy materials','draw a logo','test and judge the product'],2,'Evaluating means checking how well it works.'],['A force that pulls a material apart is…',['tension','compression','torsion'],0,'Tension pulls, compression pushes.'],['Which is a strong shape?',['Wobbly line','Triangle','Loose string'],1,'Triangles hold their shape.']]},
+{id:'lo',n:'Life Orientation',s:'Life Orientation',topic:'Study Skills',k:'life orientation lo health goals',
+ hw:[{id:'l1',t:'Study Timetable',d:'Plan your week',q:'A good study habit is…',o:['Studying only the night before','Never taking breaks','Studying a little every day'],a:2}],
+ tut:{e:'Life Orientation helps you look after your health, make good choices and plan ahead. Goals and a routine help you stay on track.',q:'A SMART goal should be…',o:['Vague','Impossible','Specific and measurable'],a:2},
+ quiz:[['Which helps manage stress?',['Skipping meals','Exercise and sleep','Staying up late'],1,'Movement and rest calm the body and mind.'],['Peer pressure is…',['influence from people your age','a school rule','a type of exam'],0,'Friends can push you to do things.'],['Being assertive means…',['shouting','staying silent','saying what you need respectfully'],2,'Assertive is clear and respectful.']]}
+];

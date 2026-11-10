@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rewards – Little Tutor</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="rewards">
+
+<div class="toast" id="toast"></div>
+
+<header class="site-header">
+  <div class="wrap topbar">
+    <div class="logo">Little Tutor</div>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="learn.html" data-page="learn">Learn</a>
+      <a href="quiz.html" data-page="quiz">Quiz</a>
+      <a href="rewards.html" data-page="rewards">Rewards</a>
+    </nav>
+    <div class="viewswitch" id="vswitch" hidden>
+      <a href="index.html" data-vs="learner">Learner View</a>
+      <a href="tutor.html" data-vs="tutor">Tutor View</a>
+    </div>
+    <div class="user">
+      <div class="pill streak">Streak <span id="streakN">0</span></div>
+      <div class="pill stars">Stars <span id="starCount">0</span></div>
+      <div class="avatar" id="avatar">C</div>
+      <button class="link" id="logout">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2 class="vt">My Rewards</h2>
+  <div class="cols">
+    <div class="card">
+      <h2>Total stars <span id="rStars" style="font-size:22px;color:var(--ink)">0</span></h2>
+      <p class="note" style="margin:0">10 stars for each homework task and 2 for each quiz answer you get right. Finish a task or quiz every day to grow your streak.</p>
+    </div>
+    <div class="card"><h2>Badges</h2>
+      <div class="badges">
+        <div class="bd" id="b1">5 Day Streak</div>
+        <div class="bd" id="b2">100 Stars</div>
+        <div class="bd" id="b3">Maths Master</div>
+        <div class="bd" id="b4">Homework Hero<br><small>All of today’s tasks</small></div>
+        <div class="bd" id="b5">Quiz Whiz<br><small>Perfect quiz score</small></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="wrap foot">Little Tutor · Grade 8 CAPS learner support</footer>
+
+<script src="js/data.js"></script>
+<script src="js/content/grade8.js"></script>
+<script src="js/content/grade9.js"></script>
+<script src="js/content/grade10.js"></script>
+<script src="js/content/grade11.js"></script>
+<script src="js/content/grade12.js"></script>
+<script src="js/core.js"></script>
+<script src="js/rewards.js"></script>
+</body>
+</html>

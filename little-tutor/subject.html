@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Subject – Little Tutor</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="learn">
+
+<div class="toast" id="toast"></div>
+
+<header class="site-header">
+  <div class="wrap topbar">
+    <div class="logo">Little Tutor</div>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="learn.html" data-page="learn">Learn</a>
+      <a href="quiz.html" data-page="quiz">Quiz</a>
+      <a href="rewards.html" data-page="rewards">Rewards</a>
+    </nav>
+    <div class="viewswitch" id="vswitch" hidden>
+      <a href="index.html" data-vs="learner">Learner View</a>
+      <a href="tutor.html" data-vs="tutor">Tutor View</a>
+    </div>
+    <div class="user">
+      <div class="pill streak">Streak <span id="streakN">0</span></div>
+      <div class="pill stars">Stars <span id="starCount">0</span></div>
+      <div class="avatar" id="avatar">C</div>
+      <button class="link" id="logout">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <a class="link" href="learn.html">Back to subjects</a>
+  <h2 class="vt" id="sTitle"></h2>
+  <div class="cols">
+    <div class="card"><h2>Homework <span>Tap a task to mark it complete</span></h2><div id="sHw"></div></div>
+    <div class="stack">
+      <div class="card"><div class="mrow"><span id="sTopic"></span><span id="sPct"></span></div><div class="bar"><div id="sBar"></div></div></div>
+      <button class="tutor" id="sTutor">Get tutored on this subject</button>
+      <a class="go" id="sQuiz" href="quiz.html">Take the quiz</a>
+    </div>
+  </div>
+</main>
+
+<footer class="wrap foot">Little Tutor · Grade 8 CAPS learner support</footer>
+
+<!-- Homework check panel -->
+<aside class="sheet" id="vsheet">
+  <h3><span id="vTitle">Check your work</span> <button class="x" id="vClose">Close</button></h3>
+  <div class="chat" id="vChat"></div>
+  <div class="opts" id="vOpts"></div>
+</aside>
+
+<!-- AI tutor panel -->
+<aside class="sheet" id="sheet">
+  <h3><span id="tTitle">Your AI Tutor</span> <button class="x" id="close">Close</button></h3>
+  <div class="chat" id="chat"></div>
+  <div class="opts" id="opts"></div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/content/grade8.js"></script>
+<script src="js/content/grade9.js"></script>
+<script src="js/content/grade10.js"></script>
+<script src="js/content/grade11.js"></script>
+<script src="js/content/grade12.js"></script>
+<script src="js/core.js"></script>
+<script src="js/subject.js"></script>
+</body>
+</html>
