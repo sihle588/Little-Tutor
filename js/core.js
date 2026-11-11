@@ -6,9 +6,8 @@ var store=null,sess=null;
 try{store=window.localStorage}catch(e){}
 try{sess=window.sessionStorage}catch(e){}
 
-var DEMO_LEARNER='sihle.learner@gmail.com',DEMO_TUTOR='likuwe.tutor@gmail.com';
-var DEMO_PW={learner:'learner123',tutor:'tutor123'};
-var CLASS_GRADE=10,CLASS_NAME='Grade 10A';
+var DEMO_TUTOR='likuwe.tutor@gmail.com';
+var DEMO_PW={tutor:'tutor123'};
 var users=readUsers();
 var realUser=null,realRole='learner',cur=null,curName='',grade=8,P=blank(),S=[];
 
@@ -28,56 +27,48 @@ function ago(n){var d=new Date();d.setDate(d.getDate()-n);return ds(d)}
 function streakNow(){return(P.last===today()||P.last===ago(1))?P.streak:0}
 function mast(s){return s.quiz.length?Math.round(100*(P.quiz[s.id]||0)/s.quiz.length):0}
 
-/* ---------- demo accounts and demo class (created once, on first visit) ---------- */
-var NAMES=['Sihle','Thabo','Lerato','Naledi','Sipho','Zanele','Ayanda','Kagiso','Nomsa','Lwazi','Palesa','Tumelo','Anele','Bongani','Refilwe','Mpho','Zodwa','Karabo','Neo','Lindiwe','Siyabonga','Amahle','Themba','Ntombi'];
-var OTHER_GRADES={Mandla:8,Busisiwe:9,Kabelo:11,Nandi:12};
-var TOP_STARS={Naledi:140,Lwazi:125,Zanele:118};
-var FAIL_FRACTIONS={Sipho:38,Thabo:42,Karabo:45,Zodwa:30,Bongani:47};
-var DEMO_ABSENT=['Thabo','Lerato','Mpho','Neo'];
-var DEMO_DONE=['Naledi','Lwazi','Zanele','Ayanda','Kagiso','Nomsa','Palesa','Tumelo','Anele','Refilwe','Lindiwe','Siyabonga','Amahle','Themba','Ntombi'];
+/* ---------- tutor demo account (created once) + one-time clean-up of the old demo learners ---------- */
+var OLD_DEMO=['Sihle','Thabo','Lerato','Naledi','Sipho','Zanele','Ayanda','Kagiso','Nomsa','Lwazi','Palesa','Tumelo','Anele','Bongani','Refilwe','Mpho','Zodwa','Karabo','Neo','Lindiwe','Siyabonga','Amahle','Themba','Ntombi','Mandla','Busisiwe','Kabelo','Nandi'];
 function em(n){return n.toLowerCase()+'.learner@gmail.com'}
 
 async function seedDemo(){
   try{
     if(!(window.crypto&&crypto.subtle))return;
     var u=readUsers(),changed=false;
-    async function add(email,name,role,g,p){
-      if(u[email])return;
+    if(!store.getItem('lt_clean_v3')){
+      OLD_DEMO.forEach(function(n){var e=em(n);if(u[e]){delete u[e];changed=true}});
+      store.removeItem('lt_class');store.setItem('lt_clean_v3','1');
+    }
+    if(!u[DEMO_TUTOR]){
       var salt=hex(crypto.getRandomValues(new Uint8Array(8)));
-      u[email]={name:name,role:role,grade:g,salt:salt,hash:await hashPw(DEMO_PW[role],salt),p:p};changed=true;
+      u[DEMO_TUTOR]={name:'Likuwe',role:'tutor',grade:0,salt:salt,hash:await hashPw(DEMO_PW.tutor,salt),p:blank()};changed=true;
     }
-    await add(DEMO_TUTOR,'Likuwe','tutor',0,blank());
-    for(var i=0;i<NAMES.length;i++){
-      var n=NAMES[i],p=blank();
-      p.stars=n==='Sihle'?0:(TOP_STARS[n]||((i*13)%80));
-      await add(em(n),n,'learner',CLASS_GRADE,p);
-    }
-    for(var k in OTHER_GRADES)await add(em(k),k,'learner',OTHER_GRADES[k],blank());
     users=u;if(changed)saveUsers();
     getClass();
   }catch(e){}
 }
 
-/* ---------- class data shared by tutor and learners (key: lt_class) ---------- */
+/* ---------- class data shared by the tutor and the tutor's learners (key: lt_class) ---------- */
 function getClass(){
-  try{var c=JSON.parse(store.getItem('lt_class'));if(c&&c.homework)return c}catch(e){}
-  var done={},scores={};
-  DEMO_DONE.forEach(function(n){done[em(n)]={note:'Finished the worksheet.',at:new Date().toISOString()}});
-  NAMES.forEach(function(n,i){scores[em(n)]=FAIL_FRACTIONS[n]!=null?FAIL_FRACTIONS[n]:(n==='Sihle'?72:60+(i*7)%36)});
-  var c={name:CLASS_NAME,grade:CLASS_GRADE,
-    homework:[{id:'hw1',subject:'Mathematics',task:'Fractions worksheet, page 38',due:today(),grade:CLASS_GRADE,created:new Date().toISOString(),done:done}],
-    messages:[],reminders:[],extra:[],attendance:{},scores:{fractions:scores}};
+  try{
+    var c=JSON.parse(store.getItem('lt_class'));
+    if(c&&c.homework){c.name=c.name||'Grade 10A';c.grade=c.grade||10;c.messages=c.messages||[];c.reminders=c.reminders||[];c.extra=c.extra||[];c.attendance=c.attendance||{};return c}
+  }catch(e){}
+  var c={name:'Grade 10A',grade:10,homework:[],messages:[],reminders:[],extra:[],attendance:{}};
   saveClass(c);return c;
 }
 function saveClass(c){try{store.setItem('lt_class',JSON.stringify(c))}catch(e){}}
+/* the tutor's own learners: accounts the tutor added (they carry the tutor's email in .tutor) */
 function roster(){
   users=readUsers();
-  return Object.keys(users).filter(function(e){var r=users[e];return(r.role||'learner')==='learner'&&(r.grade||8)===CLASS_GRADE})
-    .map(function(e){return{email:e,name:users[e].name,stars:(users[e].p&&users[e].p.stars)||0}})
+  return Object.keys(users).filter(function(e){var r=users[e];return(r.role||'learner')==='learner'&&r.tutor===cur})
+    .map(function(e){var r=users[e];return{email:e,name:r.name,grade:r.grade||8,stars:(r.p&&r.p.stars)||0,quiz:(r.p&&r.p.quiz)||{}}})
     .sort(function(a,b){return a.name.localeCompare(b.name)});
 }
+/* a learner only sees tutor homework and messages once the tutor has added them to the class */
+function inClass(){return !!(users[cur]&&users[cur].tutor)}
 function attendanceToday(c){
-  if(!c.attendance[today()]){var a={};DEMO_ABSENT.forEach(function(n){a[em(n)]='absent'});c.attendance[today()]=a;saveClass(c)}
+  if(!c.attendance[today()]){c.attendance[today()]={};saveClass(c)}
   return c.attendance[today()];
 }
 /* refresh a page when the other tab (tutor or learner) changes shared data */
@@ -94,18 +85,17 @@ function loadSession(){
   users=readUsers();
   if(!u||!has(u))return false;
   realUser=u;realRole=users[u].role||'learner';
-  var as=u,onTutorPage=document.body&&document.body.dataset.page==='tutor';
-  /* a tutor who opens a learner page previews the demo learner, so both views can be shown */
-  if(realRole==='tutor'&&!onTutorPage){if(!has(DEMO_LEARNER))return false;as=DEMO_LEARNER}
-  cur=as;curName=users[as].name;
-  grade=realRole==='tutor'&&onTutorPage?CLASS_GRADE:(users[as].grade||8);
+  cur=u;curName=users[u].name;
+  grade=realRole==='tutor'?getClass().grade:(users[u].grade||8);
   S=CONTENT[grade]||CONTENT[8];
-  P=Object.assign(blank(),users[as].p||{});
+  P=Object.assign(blank(),users[u].p||{});
   return true;
 }
+/* learner pages are for learners, the tutor dashboard is for the tutor */
 function requireLogin(tutorOnly){
   if(!loadSession()){location.replace('login.html');return false}
   if(tutorOnly&&realRole!=='tutor'){location.replace('index.html');return false}
+  if(!tutorOnly&&realRole==='tutor'){location.replace('tutor.html');return false}
   return true;
 }
 function logout(){save();try{sess.removeItem('lt_session')}catch(e){}location.href='login.html'}
@@ -116,9 +106,6 @@ function initChrome(){
   $('avatar').textContent=curName.charAt(0).toUpperCase();
   var pg=document.body.dataset.page;
   document.querySelectorAll('.nav a').forEach(function(a){a.classList.toggle('on',a.dataset.page===pg)});
-  var sw=$('vswitch');
-  if(sw){sw.hidden=realRole!=='tutor';
-    sw.querySelectorAll('a').forEach(function(a){a.classList.toggle('on',a.dataset.vs===(pg==='tutor'?'tutor':'learner'))})}
   $('logout').onclick=logout;
   if($('vClose'))$('vClose').onclick=function(){$('vsheet').classList.remove('open')};
   refreshHeader();
@@ -204,9 +191,11 @@ function openNote(h){
   };
   p.vo.appendChild(ta);p.vo.appendChild(b);p.vs.classList.add('open');
 }
-/* extra lesson sent by the tutor */
+/* extra lesson sent by the tutor (uses the tutor lesson of the chosen subject) */
 function openExtra(x){
-  var t=CONTENT[8][0].tut,p=panel('Extra lesson: '+x.topic);
+  var s=S.filter(function(z){return z.id===x.subject})[0];
+  if(!s||!s.tut){toast('This lesson is not available yet');return}
+  var t=s.tut,p=panel('Extra lesson: '+x.topic);
   p.say('Your tutor sent you this extra lesson. '+t.e,'bot');p.say('Your turn: '+t.q,'bot');
   t.o.forEach(function(txt,k){var b=document.createElement('button');b.textContent=txt;b.onclick=function(){
     p.vo.innerHTML='';p.say(txt,'me');

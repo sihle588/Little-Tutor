@@ -30,7 +30,7 @@ function renderQuiz(){
 }
 function finishQuiz(){
   var best=P.quiz[qSub.id]||0;qGain=Math.max(0,qsc-best)*2;
-  if(qsc>best)P.quiz[qSub.id]=qsc;
+    P.quiz[qSub.id]=Math.max(best,qsc);
   award(qGain);
 }
 if(requireLogin()){

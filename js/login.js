@@ -30,6 +30,5 @@ async function go(){
 $('aLogin').onclick=function(){setMode('login')};
 $('aReg').onclick=function(){setMode('register')};
 $('aGo').onclick=go;
-$('dLearner').onclick=function(){$('aUser').value=DEMO_LEARNER;$('aPass').value=DEMO_PW.learner};
 $('dTutor').onclick=function(){$('aUser').value=DEMO_TUTOR;$('aPass').value=DEMO_PW.tutor};
 ['aName','aUser','aPass'].forEach(function(id){$(id).addEventListener('keydown',function(e){if(e.key==='Enter')go()})});

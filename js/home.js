@@ -3,7 +3,6 @@ function renderHome(){
   var c=getClass();
   $('gradeLine').textContent='Good day! · Grade '+grade;
   $('hiName').textContent='Hi, '+curName+'!';
-  $('demoNote').hidden=realRole!=='tutor';$('demoNote').textContent='Tutor preview: viewing as '+curName;
   var st=streakNow();
   $('streakNote').textContent=st+' Day Streak'+(st?' – keep it going!':' – finish a task or quiz today to start one');
   var d=new Date(),dow=(d.getDay()+6)%7,h='';
@@ -11,7 +10,7 @@ function renderHome(){
   $('week').innerHTML=h;
 
   var list=$('tasks'),n=0,t=0;list.innerHTML='';
-  c.homework.filter(function(w){return w.grade===grade}).slice(-6).forEach(function(w){t++;if(w.done&&w.done[cur])n++;list.appendChild(tutorTaskEl(w))});
+ (inClass()?c.homework:[]).slice(-6).forEach
   S.forEach(function(s){s.hw.forEach(function(w){if(w.today){t++;if(P.hw[w.id]===today())n++;list.appendChild(taskEl(s,w))}})});
   if(!t)list.innerHTML='<div class="note">Nothing to do today. Enjoy your day!</div>';
   $('count').textContent=n+' of '+t+' done';
@@ -34,7 +33,7 @@ function renderFromTutor(c){
     seen[r.hw]=1;any=true;
     var d=document.createElement('div');d.className='tmsg remind';d.textContent='Reminder: please finish '+h.subject+' – '+h.task;box.appendChild(d);
   });
-  c.messages.filter(function(m){return m.grade===grade}).slice(0,3).forEach(function(m){
+  (inClass()?c.messages:[]).slice(0,3).forEach
     any=true;var d=document.createElement('div');d.className='tmsg';
     var s=document.createElement('small');s.textContent=new Date(m.date).toLocaleString('en-GB',{weekday:'short',hour:'2-digit',minute:'2-digit'});
     d.appendChild(s);d.appendChild(document.createTextNode(m.text));box.appendChild(d);
